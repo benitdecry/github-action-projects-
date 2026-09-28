@@ -1,0 +1,42 @@
+name: Simple CI-CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build Application
+        run: echo "Building application..."
+
+      - name: Build Complete
+        run: echo "Build completed successfully"
+
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Run Tests
+        run: echo "Running tests..."
+
+      - name: Tests Complete
+        run: echo "All tests passed"
+
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Deploy Application
+        run: echo "Deploying application..."
+
+      - name: Deployment Complete
+        run: echo "Application deployed successfully"
